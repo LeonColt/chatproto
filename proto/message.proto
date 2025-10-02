@@ -1,0 +1,32 @@
+syntax = "proto3";
+package chatproto;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "/chatproto";
+
+message TextMessage {
+  string id = 1;
+  string author_id = 2;
+  optional string reply_to_message_id = 3;
+  string text = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+  optional google.protobuf.Timestamp deleted_at = 7;
+}
+
+message Message {
+  oneof message {
+    TextMessage text_message = 1;
+  }
+}
+
+message ListMessagesRequest {
+  string room_id = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
+
+message ListMessagesResponse {
+  repeated Message messages = 1;
+}

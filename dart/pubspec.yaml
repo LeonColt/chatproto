@@ -1,0 +1,16 @@
+name: chatproto
+description: protobuf for chat
+version: 0.0.1
+
+environment:
+  sdk: '>=3.3.1 <4.0.0'
+
+dependencies: 
+  protoc_plugin: ^22.0.1
+  grpc: ^4.0.4
+  protobuf: ^4.0.0
+  fixnum: ^1.1.1
+
+dev_dependencies:
+  lints: ^5.1.1
+  test: ^1.25.15
