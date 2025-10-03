@@ -237,11 +237,12 @@ func (x *ListRoomsResponse) GetRooms() []*Room {
 type SendMessageRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	RoomId           *string                `protobuf:"bytes,1,opt,name=room_id,json=roomId,proto3,oneof" json:"room_id,omitempty"`
-	Content          *MessageContent        `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
-	ReplyToMessageId *string                `protobuf:"bytes,3,opt,name=reply_to_message_id,json=replyToMessageId,proto3,oneof" json:"reply_to_message_id,omitempty"`
-	Name             string                 `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	Description      string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
-	ParticipantIds   []string               `protobuf:"bytes,6,rep,name=participant_ids,json=participantIds,proto3" json:"participant_ids,omitempty"`
+	MessageId        string                 `protobuf:"bytes,2,opt,name=message_id,json=messageId,proto3" json:"message_id,omitempty"`
+	Content          *MessageContent        `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
+	ReplyToMessageId *string                `protobuf:"bytes,4,opt,name=reply_to_message_id,json=replyToMessageId,proto3,oneof" json:"reply_to_message_id,omitempty"`
+	Name             string                 `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
+	Description      string                 `protobuf:"bytes,6,opt,name=description,proto3" json:"description,omitempty"`
+	ParticipantIds   []string               `protobuf:"bytes,7,rep,name=participant_ids,json=participantIds,proto3" json:"participant_ids,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -279,6 +280,13 @@ func (*SendMessageRequest) Descriptor() ([]byte, []int) {
 func (x *SendMessageRequest) GetRoomId() string {
 	if x != nil && x.RoomId != nil {
 		return *x.RoomId
+	}
+	return ""
+}
+
+func (x *SendMessageRequest) GetMessageId() string {
+	if x != nil {
+		return x.MessageId
 	}
 	return ""
 }
@@ -522,14 +530,16 @@ const file_proto_room_proto_rawDesc = "" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x03 \x01(\x05R\x06offset\":\n" +
 	"\x11ListRoomsResponse\x12%\n" +
-	"\x05rooms\x18\x01 \x03(\v2\x0f.chatproto.RoomR\x05rooms\"\x9e\x02\n" +
+	"\x05rooms\x18\x01 \x03(\v2\x0f.chatproto.RoomR\x05rooms\"\xbd\x02\n" +
 	"\x12SendMessageRequest\x12\x1c\n" +
-	"\aroom_id\x18\x01 \x01(\tH\x00R\x06roomId\x88\x01\x01\x123\n" +
-	"\acontent\x18\x02 \x01(\v2\x19.chatproto.MessageContentR\acontent\x122\n" +
-	"\x13reply_to_message_id\x18\x03 \x01(\tH\x01R\x10replyToMessageId\x88\x01\x01\x12\x12\n" +
-	"\x04name\x18\x04 \x01(\tR\x04name\x12 \n" +
-	"\vdescription\x18\x05 \x01(\tR\vdescription\x12'\n" +
-	"\x0fparticipant_ids\x18\x06 \x03(\tR\x0eparticipantIdsB\n" +
+	"\aroom_id\x18\x01 \x01(\tH\x00R\x06roomId\x88\x01\x01\x12\x1d\n" +
+	"\n" +
+	"message_id\x18\x02 \x01(\tR\tmessageId\x123\n" +
+	"\acontent\x18\x03 \x01(\v2\x19.chatproto.MessageContentR\acontent\x122\n" +
+	"\x13reply_to_message_id\x18\x04 \x01(\tH\x01R\x10replyToMessageId\x88\x01\x01\x12\x12\n" +
+	"\x04name\x18\x05 \x01(\tR\x04name\x12 \n" +
+	"\vdescription\x18\x06 \x01(\tR\vdescription\x12'\n" +
+	"\x0fparticipant_ids\x18\a \x03(\tR\x0eparticipantIdsB\n" +
 	"\n" +
 	"\b_room_idB\x16\n" +
 	"\x14_reply_to_message_id\"\xf5\x01\n" +

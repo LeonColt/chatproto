@@ -122,9 +122,10 @@ const SendMessageRequest$json = {
       '10': 'roomId',
       '17': true
     },
+    {'1': 'message_id', '3': 2, '4': 1, '5': 9, '10': 'messageId'},
     {
       '1': 'content',
-      '3': 2,
+      '3': 3,
       '4': 1,
       '5': 11,
       '6': '.chatproto.MessageContent',
@@ -132,16 +133,16 @@ const SendMessageRequest$json = {
     },
     {
       '1': 'reply_to_message_id',
-      '3': 3,
+      '3': 4,
       '4': 1,
       '5': 9,
       '9': 1,
       '10': 'replyToMessageId',
       '17': true
     },
-    {'1': 'name', '3': 4, '4': 1, '5': 9, '10': 'name'},
-    {'1': 'description', '3': 5, '4': 1, '5': 9, '10': 'description'},
-    {'1': 'participant_ids', '3': 6, '4': 3, '5': 9, '10': 'participantIds'},
+    {'1': 'name', '3': 5, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'description', '3': 6, '4': 1, '5': 9, '10': 'description'},
+    {'1': 'participant_ids', '3': 7, '4': 3, '5': 9, '10': 'participantIds'},
   ],
   '8': [
     {'1': '_room_id'},
@@ -151,12 +152,12 @@ const SendMessageRequest$json = {
 
 /// Descriptor for `SendMessageRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List sendMessageRequestDescriptor = $convert.base64Decode(
-    'ChJTZW5kTWVzc2FnZVJlcXVlc3QSHAoHcm9vbV9pZBgBIAEoCUgAUgZyb29tSWSIAQESMwoHY2'
-    '9udGVudBgCIAEoCzIZLmNoYXRwcm90by5NZXNzYWdlQ29udGVudFIHY29udGVudBIyChNyZXBs'
-    'eV90b19tZXNzYWdlX2lkGAMgASgJSAFSEHJlcGx5VG9NZXNzYWdlSWSIAQESEgoEbmFtZRgEIA'
-    'EoCVIEbmFtZRIgCgtkZXNjcmlwdGlvbhgFIAEoCVILZGVzY3JpcHRpb24SJwoPcGFydGljaXBh'
-    'bnRfaWRzGAYgAygJUg5wYXJ0aWNpcGFudElkc0IKCghfcm9vbV9pZEIWChRfcmVwbHlfdG9fbW'
-    'Vzc2FnZV9pZA==');
+    'ChJTZW5kTWVzc2FnZVJlcXVlc3QSHAoHcm9vbV9pZBgBIAEoCUgAUgZyb29tSWSIAQESHQoKbW'
+    'Vzc2FnZV9pZBgCIAEoCVIJbWVzc2FnZUlkEjMKB2NvbnRlbnQYAyABKAsyGS5jaGF0cHJvdG8u'
+    'TWVzc2FnZUNvbnRlbnRSB2NvbnRlbnQSMgoTcmVwbHlfdG9fbWVzc2FnZV9pZBgEIAEoCUgBUh'
+    'ByZXBseVRvTWVzc2FnZUlkiAEBEhIKBG5hbWUYBSABKAlSBG5hbWUSIAoLZGVzY3JpcHRpb24Y'
+    'BiABKAlSC2Rlc2NyaXB0aW9uEicKD3BhcnRpY2lwYW50X2lkcxgHIAMoCVIOcGFydGljaXBhbn'
+    'RJZHNCCgoIX3Jvb21faWRCFgoUX3JlcGx5X3RvX21lc3NhZ2VfaWQ=');
 
 @$core.Deprecated('Use messagesRequestDescriptor instead')
 const MessagesRequest$json = {

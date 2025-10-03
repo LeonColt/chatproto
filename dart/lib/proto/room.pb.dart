@@ -309,6 +309,7 @@ class ListRoomsResponse extends $pb.GeneratedMessage {
 class SendMessageRequest extends $pb.GeneratedMessage {
   factory SendMessageRequest({
     $core.String? roomId,
+    $core.String? messageId,
     $2.MessageContent? content,
     $core.String? replyToMessageId,
     $core.String? name,
@@ -317,6 +318,7 @@ class SendMessageRequest extends $pb.GeneratedMessage {
   }) {
     final result = create();
     if (roomId != null) result.roomId = roomId;
+    if (messageId != null) result.messageId = messageId;
     if (content != null) result.content = content;
     if (replyToMessageId != null) result.replyToMessageId = replyToMessageId;
     if (name != null) result.name = name;
@@ -339,12 +341,13 @@ class SendMessageRequest extends $pb.GeneratedMessage {
       package: const $pb.PackageName(_omitMessageNames ? '' : 'chatproto'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'roomId')
-    ..aOM<$2.MessageContent>(2, _omitFieldNames ? '' : 'content',
+    ..aOS(2, _omitFieldNames ? '' : 'messageId')
+    ..aOM<$2.MessageContent>(3, _omitFieldNames ? '' : 'content',
         subBuilder: $2.MessageContent.create)
-    ..aOS(3, _omitFieldNames ? '' : 'replyToMessageId')
-    ..aOS(4, _omitFieldNames ? '' : 'name')
-    ..aOS(5, _omitFieldNames ? '' : 'description')
-    ..pPS(6, _omitFieldNames ? '' : 'participantIds')
+    ..aOS(4, _omitFieldNames ? '' : 'replyToMessageId')
+    ..aOS(5, _omitFieldNames ? '' : 'name')
+    ..aOS(6, _omitFieldNames ? '' : 'description')
+    ..pPS(7, _omitFieldNames ? '' : 'participantIds')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -378,45 +381,54 @@ class SendMessageRequest extends $pb.GeneratedMessage {
   void clearRoomId() => $_clearField(1);
 
   @$pb.TagNumber(2)
-  $2.MessageContent get content => $_getN(1);
+  $core.String get messageId => $_getSZ(1);
   @$pb.TagNumber(2)
-  set content($2.MessageContent value) => $_setField(2, value);
+  set messageId($core.String value) => $_setString(1, value);
   @$pb.TagNumber(2)
-  $core.bool hasContent() => $_has(1);
+  $core.bool hasMessageId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearContent() => $_clearField(2);
-  @$pb.TagNumber(2)
-  $2.MessageContent ensureContent() => $_ensure(1);
+  void clearMessageId() => $_clearField(2);
 
   @$pb.TagNumber(3)
-  $core.String get replyToMessageId => $_getSZ(2);
+  $2.MessageContent get content => $_getN(2);
   @$pb.TagNumber(3)
-  set replyToMessageId($core.String value) => $_setString(2, value);
+  set content($2.MessageContent value) => $_setField(3, value);
   @$pb.TagNumber(3)
-  $core.bool hasReplyToMessageId() => $_has(2);
+  $core.bool hasContent() => $_has(2);
   @$pb.TagNumber(3)
-  void clearReplyToMessageId() => $_clearField(3);
+  void clearContent() => $_clearField(3);
+  @$pb.TagNumber(3)
+  $2.MessageContent ensureContent() => $_ensure(2);
 
   @$pb.TagNumber(4)
-  $core.String get name => $_getSZ(3);
+  $core.String get replyToMessageId => $_getSZ(3);
   @$pb.TagNumber(4)
-  set name($core.String value) => $_setString(3, value);
+  set replyToMessageId($core.String value) => $_setString(3, value);
   @$pb.TagNumber(4)
-  $core.bool hasName() => $_has(3);
+  $core.bool hasReplyToMessageId() => $_has(3);
   @$pb.TagNumber(4)
-  void clearName() => $_clearField(4);
+  void clearReplyToMessageId() => $_clearField(4);
 
   @$pb.TagNumber(5)
-  $core.String get description => $_getSZ(4);
+  $core.String get name => $_getSZ(4);
   @$pb.TagNumber(5)
-  set description($core.String value) => $_setString(4, value);
+  set name($core.String value) => $_setString(4, value);
   @$pb.TagNumber(5)
-  $core.bool hasDescription() => $_has(4);
+  $core.bool hasName() => $_has(4);
   @$pb.TagNumber(5)
-  void clearDescription() => $_clearField(5);
+  void clearName() => $_clearField(5);
 
   @$pb.TagNumber(6)
-  $pb.PbList<$core.String> get participantIds => $_getList(5);
+  $core.String get description => $_getSZ(5);
+  @$pb.TagNumber(6)
+  set description($core.String value) => $_setString(5, value);
+  @$pb.TagNumber(6)
+  $core.bool hasDescription() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearDescription() => $_clearField(6);
+
+  @$pb.TagNumber(7)
+  $pb.PbList<$core.String> get participantIds => $_getList(6);
 }
 
 enum MessagesRequest_Request { sendMessageRequest, listMessagesRequest, notSet }

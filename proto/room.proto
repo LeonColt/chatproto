@@ -30,11 +30,12 @@ message ListRoomsResponse {
 
 message SendMessageRequest {
   optional string room_id = 1;
-  MessageContent content = 2;
-  optional string reply_to_message_id = 3;
-  string name = 4;
-  string description = 5;
-  repeated string participant_ids = 6;
+  string message_id = 2;
+  MessageContent content = 3;
+  optional string reply_to_message_id = 4;
+  string name = 5;
+  string description = 6;
+  repeated string participant_ids = 7;
 }
 
 message MessagesRequest {
