@@ -18,13 +18,11 @@ message Room {
   optional google.protobuf.Timestamp deleted_at = 9;
 }
 
-message ListRoomsRequest {
+message User {
   string user_id = 1;
-  int32 limit = 2;
-  int32 offset = 3;
 }
 
-message ListRoomsResponse {
+message RoomsResponse {
   repeated Room rooms = 1;
 }
 
@@ -53,7 +51,7 @@ message MessagesResponse {
 }
 
 service ChatController {
-  rpc List(ListRoomsRequest) returns (ListRoomsResponse);
+  rpc Rooms(User) returns (stream RoomsResponse);
   rpc ListMessages(ListMessagesServerRequest) returns (ListMessagesServerResponse);
   rpc Messages(stream MessagesRequest) returns (stream MessagesResponse);
 }

@@ -175,57 +175,49 @@ class Room extends $pb.GeneratedMessage {
   $2.Timestamp ensureDeletedAt() => $_ensure(8);
 }
 
-class ListRoomsRequest extends $pb.GeneratedMessage {
-  factory ListRoomsRequest({
+class User extends $pb.GeneratedMessage {
+  factory User({
     $core.String? userId,
-    $core.int? limit,
-    $core.int? offset,
   }) {
     final result = create();
     if (userId != null) result.userId = userId;
-    if (limit != null) result.limit = limit;
-    if (offset != null) result.offset = offset;
     return result;
   }
 
-  ListRoomsRequest._();
+  User._();
 
-  factory ListRoomsRequest.fromBuffer($core.List<$core.int> data,
+  factory User.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(data, registry);
-  factory ListRoomsRequest.fromJson($core.String json,
+  factory User.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ListRoomsRequest',
+      _omitMessageNames ? '' : 'User',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'chatproto'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'userId')
-    ..a<$core.int>(2, _omitFieldNames ? '' : 'limit', $pb.PbFieldType.O3)
-    ..a<$core.int>(3, _omitFieldNames ? '' : 'offset', $pb.PbFieldType.O3)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ListRoomsRequest clone() => ListRoomsRequest()..mergeFromMessage(this);
+  User clone() => User()..mergeFromMessage(this);
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ListRoomsRequest copyWith(void Function(ListRoomsRequest) updates) =>
-      super.copyWith((message) => updates(message as ListRoomsRequest))
-          as ListRoomsRequest;
+  User copyWith(void Function(User) updates) =>
+      super.copyWith((message) => updates(message as User)) as User;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static ListRoomsRequest create() => ListRoomsRequest._();
+  static User create() => User._();
   @$core.override
-  ListRoomsRequest createEmptyInstance() => create();
-  static $pb.PbList<ListRoomsRequest> createRepeated() =>
-      $pb.PbList<ListRoomsRequest>();
+  User createEmptyInstance() => create();
+  static $pb.PbList<User> createRepeated() => $pb.PbList<User>();
   @$core.pragma('dart2js:noInline')
-  static ListRoomsRequest getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ListRoomsRequest>(create);
-  static ListRoomsRequest? _defaultInstance;
+  static User getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<User>(create);
+  static User? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get userId => $_getSZ(0);
@@ -235,28 +227,10 @@ class ListRoomsRequest extends $pb.GeneratedMessage {
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
   void clearUserId() => $_clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.int get limit => $_getIZ(1);
-  @$pb.TagNumber(2)
-  set limit($core.int value) => $_setSignedInt32(1, value);
-  @$pb.TagNumber(2)
-  $core.bool hasLimit() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearLimit() => $_clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.int get offset => $_getIZ(2);
-  @$pb.TagNumber(3)
-  set offset($core.int value) => $_setSignedInt32(2, value);
-  @$pb.TagNumber(3)
-  $core.bool hasOffset() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearOffset() => $_clearField(3);
 }
 
-class ListRoomsResponse extends $pb.GeneratedMessage {
-  factory ListRoomsResponse({
+class RoomsResponse extends $pb.GeneratedMessage {
+  factory RoomsResponse({
     $core.Iterable<Room>? rooms,
   }) {
     final result = create();
@@ -264,17 +238,17 @@ class ListRoomsResponse extends $pb.GeneratedMessage {
     return result;
   }
 
-  ListRoomsResponse._();
+  RoomsResponse._();
 
-  factory ListRoomsResponse.fromBuffer($core.List<$core.int> data,
+  factory RoomsResponse.fromBuffer($core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(data, registry);
-  factory ListRoomsResponse.fromJson($core.String json,
+  factory RoomsResponse.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'ListRoomsResponse',
+      _omitMessageNames ? '' : 'RoomsResponse',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'chatproto'),
       createEmptyInstance: create)
     ..pc<Room>(1, _omitFieldNames ? '' : 'rooms', $pb.PbFieldType.PM,
@@ -282,25 +256,25 @@ class ListRoomsResponse extends $pb.GeneratedMessage {
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ListRoomsResponse clone() => ListRoomsResponse()..mergeFromMessage(this);
+  RoomsResponse clone() => RoomsResponse()..mergeFromMessage(this);
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  ListRoomsResponse copyWith(void Function(ListRoomsResponse) updates) =>
-      super.copyWith((message) => updates(message as ListRoomsResponse))
-          as ListRoomsResponse;
+  RoomsResponse copyWith(void Function(RoomsResponse) updates) =>
+      super.copyWith((message) => updates(message as RoomsResponse))
+          as RoomsResponse;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static ListRoomsResponse create() => ListRoomsResponse._();
+  static RoomsResponse create() => RoomsResponse._();
   @$core.override
-  ListRoomsResponse createEmptyInstance() => create();
-  static $pb.PbList<ListRoomsResponse> createRepeated() =>
-      $pb.PbList<ListRoomsResponse>();
+  RoomsResponse createEmptyInstance() => create();
+  static $pb.PbList<RoomsResponse> createRepeated() =>
+      $pb.PbList<RoomsResponse>();
   @$core.pragma('dart2js:noInline')
-  static ListRoomsResponse getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<ListRoomsResponse>(create);
-  static ListRoomsResponse? _defaultInstance;
+  static RoomsResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<RoomsResponse>(create);
+  static RoomsResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   $pb.PbList<Room> get rooms => $_getList(0);

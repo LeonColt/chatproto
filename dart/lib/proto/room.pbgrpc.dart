@@ -33,11 +33,12 @@ class ChatControllerClient extends $grpc.Client {
 
   ChatControllerClient(super.channel, {super.options, super.interceptors});
 
-  $grpc.ResponseFuture<$0.ListRoomsResponse> list(
-    $0.ListRoomsRequest request, {
+  $grpc.ResponseStream<$0.RoomsResponse> rooms(
+    $0.User request, {
     $grpc.CallOptions? options,
   }) {
-    return $createUnaryCall(_$list, request, options: options);
+    return $createStreamingCall(_$rooms, $async.Stream.fromIterable([request]),
+        options: options);
   }
 
   $grpc.ResponseFuture<$1.ListMessagesServerResponse> listMessages(
@@ -56,11 +57,10 @@ class ChatControllerClient extends $grpc.Client {
 
   // method descriptors
 
-  static final _$list =
-      $grpc.ClientMethod<$0.ListRoomsRequest, $0.ListRoomsResponse>(
-          '/chatproto.ChatController/List',
-          ($0.ListRoomsRequest value) => value.writeToBuffer(),
-          $0.ListRoomsResponse.fromBuffer);
+  static final _$rooms = $grpc.ClientMethod<$0.User, $0.RoomsResponse>(
+      '/chatproto.ChatController/Rooms',
+      ($0.User value) => value.writeToBuffer(),
+      $0.RoomsResponse.fromBuffer);
   static final _$listMessages = $grpc.ClientMethod<$1.ListMessagesServerRequest,
           $1.ListMessagesServerResponse>(
       '/chatproto.ChatController/ListMessages',
@@ -78,13 +78,13 @@ abstract class ChatControllerServiceBase extends $grpc.Service {
   $core.String get $name => 'chatproto.ChatController';
 
   ChatControllerServiceBase() {
-    $addMethod($grpc.ServiceMethod<$0.ListRoomsRequest, $0.ListRoomsResponse>(
-        'List',
-        list_Pre,
+    $addMethod($grpc.ServiceMethod<$0.User, $0.RoomsResponse>(
+        'Rooms',
+        rooms_Pre,
         false,
-        false,
-        ($core.List<$core.int> value) => $0.ListRoomsRequest.fromBuffer(value),
-        ($0.ListRoomsResponse value) => value.writeToBuffer()));
+        true,
+        ($core.List<$core.int> value) => $0.User.fromBuffer(value),
+        ($0.RoomsResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$1.ListMessagesServerRequest,
             $1.ListMessagesServerResponse>(
         'ListMessages',
@@ -103,13 +103,13 @@ abstract class ChatControllerServiceBase extends $grpc.Service {
         ($0.MessagesResponse value) => value.writeToBuffer()));
   }
 
-  $async.Future<$0.ListRoomsResponse> list_Pre($grpc.ServiceCall $call,
-      $async.Future<$0.ListRoomsRequest> $request) async {
-    return list($call, await $request);
+  $async.Stream<$0.RoomsResponse> rooms_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.User> $request) async* {
+    yield* rooms($call, await $request);
   }
 
-  $async.Future<$0.ListRoomsResponse> list(
-      $grpc.ServiceCall call, $0.ListRoomsRequest request);
+  $async.Stream<$0.RoomsResponse> rooms(
+      $grpc.ServiceCall call, $0.User request);
 
   $async.Future<$1.ListMessagesServerResponse> listMessages_Pre(
       $grpc.ServiceCall $call,

@@ -130,29 +130,27 @@ func (x *Room) GetDeletedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-type ListRoomsRequest struct {
+type User struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
-	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListRoomsRequest) Reset() {
-	*x = ListRoomsRequest{}
+func (x *User) Reset() {
+	*x = User{}
 	mi := &file_proto_room_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListRoomsRequest) String() string {
+func (x *User) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListRoomsRequest) ProtoMessage() {}
+func (*User) ProtoMessage() {}
 
-func (x *ListRoomsRequest) ProtoReflect() protoreflect.Message {
+func (x *User) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_room_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -164,53 +162,39 @@ func (x *ListRoomsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListRoomsRequest.ProtoReflect.Descriptor instead.
-func (*ListRoomsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use User.ProtoReflect.Descriptor instead.
+func (*User) Descriptor() ([]byte, []int) {
 	return file_proto_room_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ListRoomsRequest) GetUserId() string {
+func (x *User) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *ListRoomsRequest) GetLimit() int32 {
-	if x != nil {
-		return x.Limit
-	}
-	return 0
-}
-
-func (x *ListRoomsRequest) GetOffset() int32 {
-	if x != nil {
-		return x.Offset
-	}
-	return 0
-}
-
-type ListRoomsResponse struct {
+type RoomsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Rooms         []*Room                `protobuf:"bytes,1,rep,name=rooms,proto3" json:"rooms,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListRoomsResponse) Reset() {
-	*x = ListRoomsResponse{}
+func (x *RoomsResponse) Reset() {
+	*x = RoomsResponse{}
 	mi := &file_proto_room_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListRoomsResponse) String() string {
+func (x *RoomsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListRoomsResponse) ProtoMessage() {}
+func (*RoomsResponse) ProtoMessage() {}
 
-func (x *ListRoomsResponse) ProtoReflect() protoreflect.Message {
+func (x *RoomsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_room_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -222,12 +206,12 @@ func (x *ListRoomsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListRoomsResponse.ProtoReflect.Descriptor instead.
-func (*ListRoomsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use RoomsResponse.ProtoReflect.Descriptor instead.
+func (*RoomsResponse) Descriptor() ([]byte, []int) {
 	return file_proto_room_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *ListRoomsResponse) GetRooms() []*Room {
+func (x *RoomsResponse) GetRooms() []*Room {
 	if x != nil {
 		return x.Rooms
 	}
@@ -492,12 +476,10 @@ const file_proto_room_proto_rawDesc = "" +
 	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12>\n" +
 	"\n" +
 	"deleted_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tdeletedAt\x88\x01\x01B\r\n" +
-	"\v_deleted_at\"Y\n" +
-	"\x10ListRoomsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\":\n" +
-	"\x11ListRoomsResponse\x12%\n" +
+	"\v_deleted_at\"\x1f\n" +
+	"\x04User\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"6\n" +
+	"\rRoomsResponse\x12%\n" +
 	"\x05rooms\x18\x01 \x03(\v2\x0f.chatproto.RoomR\x05rooms\"\xbd\x02\n" +
 	"\x12SendMessageRequest\x12\x1c\n" +
 	"\aroom_id\x18\x01 \x01(\tH\x00R\x06roomId\x88\x01\x01\x12\x1d\n" +
@@ -521,9 +503,9 @@ const file_proto_room_proto_rawDesc = "" +
 	"\aroom_id\x18\x01 \x01(\tR\x06roomId\x12.\n" +
 	"\amessage\x18\x02 \x01(\v2\x12.chatproto.MessageH\x00R\amessageB\n" +
 	"\n" +
-	"\bresponse2\xf9\x01\n" +
-	"\x0eChatController\x12A\n" +
-	"\x04List\x12\x1b.chatproto.ListRoomsRequest\x1a\x1c.chatproto.ListRoomsResponse\x12[\n" +
+	"\bresponse2\xec\x01\n" +
+	"\x0eChatController\x124\n" +
+	"\x05Rooms\x12\x0f.chatproto.User\x1a\x18.chatproto.RoomsResponse0\x01\x12[\n" +
 	"\fListMessages\x12$.chatproto.ListMessagesServerRequest\x1a%.chatproto.ListMessagesServerResponse\x12G\n" +
 	"\bMessages\x12\x1a.chatproto.MessagesRequest\x1a\x1b.chatproto.MessagesResponse(\x010\x01B\fZ\n" +
 	"/chatprotob\x06proto3"
@@ -543,8 +525,8 @@ func file_proto_room_proto_rawDescGZIP() []byte {
 var file_proto_room_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_proto_room_proto_goTypes = []any{
 	(*Room)(nil),                       // 0: chatproto.Room
-	(*ListRoomsRequest)(nil),           // 1: chatproto.ListRoomsRequest
-	(*ListRoomsResponse)(nil),          // 2: chatproto.ListRoomsResponse
+	(*User)(nil),                       // 1: chatproto.User
+	(*RoomsResponse)(nil),              // 2: chatproto.RoomsResponse
 	(*SendMessageRequest)(nil),         // 3: chatproto.SendMessageRequest
 	(*MessagesRequest)(nil),            // 4: chatproto.MessagesRequest
 	(*MessagesResponse)(nil),           // 5: chatproto.MessagesResponse
@@ -559,14 +541,14 @@ var file_proto_room_proto_depIdxs = []int32{
 	6,  // 1: chatproto.Room.created_at:type_name -> google.protobuf.Timestamp
 	6,  // 2: chatproto.Room.updated_at:type_name -> google.protobuf.Timestamp
 	6,  // 3: chatproto.Room.deleted_at:type_name -> google.protobuf.Timestamp
-	0,  // 4: chatproto.ListRoomsResponse.rooms:type_name -> chatproto.Room
+	0,  // 4: chatproto.RoomsResponse.rooms:type_name -> chatproto.Room
 	7,  // 5: chatproto.SendMessageRequest.content:type_name -> chatproto.MessageContent
 	3,  // 6: chatproto.MessagesRequest.send_message_request:type_name -> chatproto.SendMessageRequest
 	8,  // 7: chatproto.MessagesResponse.message:type_name -> chatproto.Message
-	1,  // 8: chatproto.ChatController.List:input_type -> chatproto.ListRoomsRequest
+	1,  // 8: chatproto.ChatController.Rooms:input_type -> chatproto.User
 	9,  // 9: chatproto.ChatController.ListMessages:input_type -> chatproto.ListMessagesServerRequest
 	4,  // 10: chatproto.ChatController.Messages:input_type -> chatproto.MessagesRequest
-	2,  // 11: chatproto.ChatController.List:output_type -> chatproto.ListRoomsResponse
+	2,  // 11: chatproto.ChatController.Rooms:output_type -> chatproto.RoomsResponse
 	10, // 12: chatproto.ChatController.ListMessages:output_type -> chatproto.ListMessagesServerResponse
 	5,  // 13: chatproto.ChatController.Messages:output_type -> chatproto.MessagesResponse
 	11, // [11:14] is the sub-list for method output_type

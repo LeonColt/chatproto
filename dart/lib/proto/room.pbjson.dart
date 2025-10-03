@@ -74,24 +74,21 @@ final $typed_data.Uint8List roomDescriptor = $convert.base64Decode(
     'dGVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEgAUglkZWxldGVkQXSIAQ'
     'FCDQoLX2RlbGV0ZWRfYXQ=');
 
-@$core.Deprecated('Use listRoomsRequestDescriptor instead')
-const ListRoomsRequest$json = {
-  '1': 'ListRoomsRequest',
+@$core.Deprecated('Use userDescriptor instead')
+const User$json = {
+  '1': 'User',
   '2': [
     {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
-    {'1': 'limit', '3': 2, '4': 1, '5': 5, '10': 'limit'},
-    {'1': 'offset', '3': 3, '4': 1, '5': 5, '10': 'offset'},
   ],
 };
 
-/// Descriptor for `ListRoomsRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List listRoomsRequestDescriptor = $convert.base64Decode(
-    'ChBMaXN0Um9vbXNSZXF1ZXN0EhcKB3VzZXJfaWQYASABKAlSBnVzZXJJZBIUCgVsaW1pdBgCIA'
-    'EoBVIFbGltaXQSFgoGb2Zmc2V0GAMgASgFUgZvZmZzZXQ=');
+/// Descriptor for `User`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List userDescriptor =
+    $convert.base64Decode('CgRVc2VyEhcKB3VzZXJfaWQYASABKAlSBnVzZXJJZA==');
 
-@$core.Deprecated('Use listRoomsResponseDescriptor instead')
-const ListRoomsResponse$json = {
-  '1': 'ListRoomsResponse',
+@$core.Deprecated('Use roomsResponseDescriptor instead')
+const RoomsResponse$json = {
+  '1': 'RoomsResponse',
   '2': [
     {
       '1': 'rooms',
@@ -104,10 +101,9 @@ const ListRoomsResponse$json = {
   ],
 };
 
-/// Descriptor for `ListRoomsResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List listRoomsResponseDescriptor = $convert.base64Decode(
-    'ChFMaXN0Um9vbXNSZXNwb25zZRIlCgVyb29tcxgBIAMoCzIPLmNoYXRwcm90by5Sb29tUgVyb2'
-    '9tcw==');
+/// Descriptor for `RoomsResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List roomsResponseDescriptor = $convert.base64Decode(
+    'Cg1Sb29tc1Jlc3BvbnNlEiUKBXJvb21zGAEgAygLMg8uY2hhdHByb3RvLlJvb21SBXJvb21z');
 
 @$core.Deprecated('Use sendMessageRequestDescriptor instead')
 const SendMessageRequest$json = {
