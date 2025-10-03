@@ -123,27 +123,119 @@ const SendMessageRequest$json = {
       '17': true
     },
     {
-      '1': 'message',
+      '1': 'content',
       '3': 2,
       '4': 1,
       '5': 11,
-      '6': '.chatproto.Message',
-      '10': 'message'
+      '6': '.chatproto.MessageContent',
+      '10': 'content'
     },
-    {'1': 'index', '3': 3, '4': 1, '5': 5, '10': 'index'},
+    {
+      '1': 'reply_to_message_id',
+      '3': 3,
+      '4': 1,
+      '5': 9,
+      '9': 1,
+      '10': 'replyToMessageId',
+      '17': true
+    },
     {'1': 'name', '3': 4, '4': 1, '5': 9, '10': 'name'},
     {'1': 'description', '3': 5, '4': 1, '5': 9, '10': 'description'},
     {'1': 'participant_ids', '3': 6, '4': 3, '5': 9, '10': 'participantIds'},
   ],
   '8': [
     {'1': '_room_id'},
+    {'1': '_reply_to_message_id'},
   ],
 };
 
 /// Descriptor for `SendMessageRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List sendMessageRequestDescriptor = $convert.base64Decode(
-    'ChJTZW5kTWVzc2FnZVJlcXVlc3QSHAoHcm9vbV9pZBgBIAEoCUgAUgZyb29tSWSIAQESLAoHbW'
-    'Vzc2FnZRgCIAEoCzISLmNoYXRwcm90by5NZXNzYWdlUgdtZXNzYWdlEhQKBWluZGV4GAMgASgF'
-    'UgVpbmRleBISCgRuYW1lGAQgASgJUgRuYW1lEiAKC2Rlc2NyaXB0aW9uGAUgASgJUgtkZXNjcm'
-    'lwdGlvbhInCg9wYXJ0aWNpcGFudF9pZHMYBiADKAlSDnBhcnRpY2lwYW50SWRzQgoKCF9yb29t'
-    'X2lk');
+    'ChJTZW5kTWVzc2FnZVJlcXVlc3QSHAoHcm9vbV9pZBgBIAEoCUgAUgZyb29tSWSIAQESMwoHY2'
+    '9udGVudBgCIAEoCzIZLmNoYXRwcm90by5NZXNzYWdlQ29udGVudFIHY29udGVudBIyChNyZXBs'
+    'eV90b19tZXNzYWdlX2lkGAMgASgJSAFSEHJlcGx5VG9NZXNzYWdlSWSIAQESEgoEbmFtZRgEIA'
+    'EoCVIEbmFtZRIgCgtkZXNjcmlwdGlvbhgFIAEoCVILZGVzY3JpcHRpb24SJwoPcGFydGljaXBh'
+    'bnRfaWRzGAYgAygJUg5wYXJ0aWNpcGFudElkc0IKCghfcm9vbV9pZEIWChRfcmVwbHlfdG9fbW'
+    'Vzc2FnZV9pZA==');
+
+@$core.Deprecated('Use messagesRequestDescriptor instead')
+const MessagesRequest$json = {
+  '1': 'MessagesRequest',
+  '2': [
+    {
+      '1': 'room_id',
+      '3': 1,
+      '4': 1,
+      '5': 9,
+      '9': 1,
+      '10': 'roomId',
+      '17': true
+    },
+    {
+      '1': 'send_message_request',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.chatproto.SendMessageRequest',
+      '9': 0,
+      '10': 'sendMessageRequest'
+    },
+    {
+      '1': 'list_messages_request',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.chatproto.ListMessagesServerRequest',
+      '9': 0,
+      '10': 'listMessagesRequest'
+    },
+  ],
+  '8': [
+    {'1': 'request'},
+    {'1': '_room_id'},
+  ],
+};
+
+/// Descriptor for `MessagesRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List messagesRequestDescriptor = $convert.base64Decode(
+    'Cg9NZXNzYWdlc1JlcXVlc3QSHAoHcm9vbV9pZBgBIAEoCUgBUgZyb29tSWSIAQESUQoUc2VuZF'
+    '9tZXNzYWdlX3JlcXVlc3QYAiABKAsyHS5jaGF0cHJvdG8uU2VuZE1lc3NhZ2VSZXF1ZXN0SABS'
+    'EnNlbmRNZXNzYWdlUmVxdWVzdBJaChVsaXN0X21lc3NhZ2VzX3JlcXVlc3QYAyABKAsyJC5jaG'
+    'F0cHJvdG8uTGlzdE1lc3NhZ2VzU2VydmVyUmVxdWVzdEgAUhNsaXN0TWVzc2FnZXNSZXF1ZXN0'
+    'QgkKB3JlcXVlc3RCCgoIX3Jvb21faWQ=');
+
+@$core.Deprecated('Use messagesResponseDescriptor instead')
+const MessagesResponse$json = {
+  '1': 'MessagesResponse',
+  '2': [
+    {'1': 'room_id', '3': 1, '4': 1, '5': 9, '10': 'roomId'},
+    {
+      '1': 'message',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.chatproto.Message',
+      '9': 0,
+      '10': 'message'
+    },
+    {
+      '1': 'list_messages_response',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.chatproto.ListMessagesServerResponse',
+      '9': 0,
+      '10': 'listMessagesResponse'
+    },
+  ],
+  '8': [
+    {'1': 'response'},
+  ],
+};
+
+/// Descriptor for `MessagesResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List messagesResponseDescriptor = $convert.base64Decode(
+    'ChBNZXNzYWdlc1Jlc3BvbnNlEhcKB3Jvb21faWQYASABKAlSBnJvb21JZBIuCgdtZXNzYWdlGA'
+    'IgASgLMhIuY2hhdHByb3RvLk1lc3NhZ2VIAFIHbWVzc2FnZRJdChZsaXN0X21lc3NhZ2VzX3Jl'
+    'c3BvbnNlGAMgASgLMiUuY2hhdHByb3RvLkxpc3RNZXNzYWdlc1NlcnZlclJlc3BvbnNlSABSFG'
+    'xpc3RNZXNzYWdlc1Jlc3BvbnNlQgoKCHJlc3BvbnNl');

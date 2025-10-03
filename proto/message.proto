@@ -5,28 +5,29 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "/chatproto";
 
-message TextMessage {
-  string id = 1;
-  string author_id = 2;
-  optional string reply_to_message_id = 3;
-  string text = 4;
-  google.protobuf.Timestamp created_at = 5;
-  google.protobuf.Timestamp updated_at = 6;
-  optional google.protobuf.Timestamp deleted_at = 7;
+message MessageContentText {
+  string text = 1;
 }
 
-message Message {
-  oneof message {
-    TextMessage text_message = 1;
+message MessageContent {
+  oneof content {
+    MessageContentText text = 2;
   }
 }
 
-message ListMessagesRequest {
-  string room_id = 1;
-  int32 limit = 2;
-  int32 offset = 3;
+message Message {
+  int32 index = 1;
+  string id = 2;
+  string author_id = 3;
+  optional string reply_to_message_id = 4;
+  MessageContent content = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  optional google.protobuf.Timestamp deleted_at = 8;
 }
 
-message ListMessagesResponse {
+message ListMessagesServerRequest {}
+
+message ListMessagesServerResponse {
   repeated Message messages = 1;
 }

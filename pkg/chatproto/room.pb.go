@@ -235,15 +235,15 @@ func (x *ListRoomsResponse) GetRooms() []*Room {
 }
 
 type SendMessageRequest struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	RoomId         *string                `protobuf:"bytes,1,opt,name=room_id,json=roomId,proto3,oneof" json:"room_id,omitempty"`
-	Message        *Message               `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	Index          int32                  `protobuf:"varint,3,opt,name=index,proto3" json:"index,omitempty"`
-	Name           string                 `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
-	Description    string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
-	ParticipantIds []string               `protobuf:"bytes,6,rep,name=participant_ids,json=participantIds,proto3" json:"participant_ids,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	RoomId           *string                `protobuf:"bytes,1,opt,name=room_id,json=roomId,proto3,oneof" json:"room_id,omitempty"`
+	Content          *MessageContent        `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
+	ReplyToMessageId *string                `protobuf:"bytes,3,opt,name=reply_to_message_id,json=replyToMessageId,proto3,oneof" json:"reply_to_message_id,omitempty"`
+	Name             string                 `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`
+	Description      string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
+	ParticipantIds   []string               `protobuf:"bytes,6,rep,name=participant_ids,json=participantIds,proto3" json:"participant_ids,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *SendMessageRequest) Reset() {
@@ -283,18 +283,18 @@ func (x *SendMessageRequest) GetRoomId() string {
 	return ""
 }
 
-func (x *SendMessageRequest) GetMessage() *Message {
+func (x *SendMessageRequest) GetContent() *MessageContent {
 	if x != nil {
-		return x.Message
+		return x.Content
 	}
 	return nil
 }
 
-func (x *SendMessageRequest) GetIndex() int32 {
-	if x != nil {
-		return x.Index
+func (x *SendMessageRequest) GetReplyToMessageId() string {
+	if x != nil && x.ReplyToMessageId != nil {
+		return *x.ReplyToMessageId
 	}
-	return 0
+	return ""
 }
 
 func (x *SendMessageRequest) GetName() string {
@@ -317,6 +317,186 @@ func (x *SendMessageRequest) GetParticipantIds() []string {
 	}
 	return nil
 }
+
+type MessagesRequest struct {
+	state  protoimpl.MessageState `protogen:"open.v1"`
+	RoomId *string                `protobuf:"bytes,1,opt,name=room_id,json=roomId,proto3,oneof" json:"room_id,omitempty"`
+	// Types that are valid to be assigned to Request:
+	//
+	//	*MessagesRequest_SendMessageRequest
+	//	*MessagesRequest_ListMessagesRequest
+	Request       isMessagesRequest_Request `protobuf_oneof:"request"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MessagesRequest) Reset() {
+	*x = MessagesRequest{}
+	mi := &file_proto_room_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MessagesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MessagesRequest) ProtoMessage() {}
+
+func (x *MessagesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_room_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MessagesRequest.ProtoReflect.Descriptor instead.
+func (*MessagesRequest) Descriptor() ([]byte, []int) {
+	return file_proto_room_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *MessagesRequest) GetRoomId() string {
+	if x != nil && x.RoomId != nil {
+		return *x.RoomId
+	}
+	return ""
+}
+
+func (x *MessagesRequest) GetRequest() isMessagesRequest_Request {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
+func (x *MessagesRequest) GetSendMessageRequest() *SendMessageRequest {
+	if x != nil {
+		if x, ok := x.Request.(*MessagesRequest_SendMessageRequest); ok {
+			return x.SendMessageRequest
+		}
+	}
+	return nil
+}
+
+func (x *MessagesRequest) GetListMessagesRequest() *ListMessagesServerRequest {
+	if x != nil {
+		if x, ok := x.Request.(*MessagesRequest_ListMessagesRequest); ok {
+			return x.ListMessagesRequest
+		}
+	}
+	return nil
+}
+
+type isMessagesRequest_Request interface {
+	isMessagesRequest_Request()
+}
+
+type MessagesRequest_SendMessageRequest struct {
+	SendMessageRequest *SendMessageRequest `protobuf:"bytes,2,opt,name=send_message_request,json=sendMessageRequest,proto3,oneof"`
+}
+
+type MessagesRequest_ListMessagesRequest struct {
+	ListMessagesRequest *ListMessagesServerRequest `protobuf:"bytes,3,opt,name=list_messages_request,json=listMessagesRequest,proto3,oneof"`
+}
+
+func (*MessagesRequest_SendMessageRequest) isMessagesRequest_Request() {}
+
+func (*MessagesRequest_ListMessagesRequest) isMessagesRequest_Request() {}
+
+type MessagesResponse struct {
+	state  protoimpl.MessageState `protogen:"open.v1"`
+	RoomId string                 `protobuf:"bytes,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
+	// Types that are valid to be assigned to Response:
+	//
+	//	*MessagesResponse_Message
+	//	*MessagesResponse_ListMessagesResponse
+	Response      isMessagesResponse_Response `protobuf_oneof:"response"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MessagesResponse) Reset() {
+	*x = MessagesResponse{}
+	mi := &file_proto_room_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MessagesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MessagesResponse) ProtoMessage() {}
+
+func (x *MessagesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_room_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MessagesResponse.ProtoReflect.Descriptor instead.
+func (*MessagesResponse) Descriptor() ([]byte, []int) {
+	return file_proto_room_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *MessagesResponse) GetRoomId() string {
+	if x != nil {
+		return x.RoomId
+	}
+	return ""
+}
+
+func (x *MessagesResponse) GetResponse() isMessagesResponse_Response {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
+func (x *MessagesResponse) GetMessage() *Message {
+	if x != nil {
+		if x, ok := x.Response.(*MessagesResponse_Message); ok {
+			return x.Message
+		}
+	}
+	return nil
+}
+
+func (x *MessagesResponse) GetListMessagesResponse() *ListMessagesServerResponse {
+	if x != nil {
+		if x, ok := x.Response.(*MessagesResponse_ListMessagesResponse); ok {
+			return x.ListMessagesResponse
+		}
+	}
+	return nil
+}
+
+type isMessagesResponse_Response interface {
+	isMessagesResponse_Response()
+}
+
+type MessagesResponse_Message struct {
+	Message *Message `protobuf:"bytes,2,opt,name=message,proto3,oneof"`
+}
+
+type MessagesResponse_ListMessagesResponse struct {
+	ListMessagesResponse *ListMessagesServerResponse `protobuf:"bytes,3,opt,name=list_messages_response,json=listMessagesResponse,proto3,oneof"`
+}
+
+func (*MessagesResponse_Message) isMessagesResponse_Response() {}
+
+func (*MessagesResponse_ListMessagesResponse) isMessagesResponse_Response() {}
 
 var File_proto_room_proto protoreflect.FileDescriptor
 
@@ -342,19 +522,33 @@ const file_proto_room_proto_rawDesc = "" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x03 \x01(\x05R\x06offset\":\n" +
 	"\x11ListRoomsResponse\x12%\n" +
-	"\x05rooms\x18\x01 \x03(\v2\x0f.chatproto.RoomR\x05rooms\"\xe1\x01\n" +
+	"\x05rooms\x18\x01 \x03(\v2\x0f.chatproto.RoomR\x05rooms\"\x9e\x02\n" +
 	"\x12SendMessageRequest\x12\x1c\n" +
-	"\aroom_id\x18\x01 \x01(\tH\x00R\x06roomId\x88\x01\x01\x12,\n" +
-	"\amessage\x18\x02 \x01(\v2\x12.chatproto.MessageR\amessage\x12\x14\n" +
-	"\x05index\x18\x03 \x01(\x05R\x05index\x12\x12\n" +
+	"\aroom_id\x18\x01 \x01(\tH\x00R\x06roomId\x88\x01\x01\x123\n" +
+	"\acontent\x18\x02 \x01(\v2\x19.chatproto.MessageContentR\acontent\x122\n" +
+	"\x13reply_to_message_id\x18\x03 \x01(\tH\x01R\x10replyToMessageId\x88\x01\x01\x12\x12\n" +
 	"\x04name\x18\x04 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x05 \x01(\tR\vdescription\x12'\n" +
 	"\x0fparticipant_ids\x18\x06 \x03(\tR\x0eparticipantIdsB\n" +
 	"\n" +
-	"\b_room_id2\x96\x01\n" +
+	"\b_room_idB\x16\n" +
+	"\x14_reply_to_message_id\"\xf5\x01\n" +
+	"\x0fMessagesRequest\x12\x1c\n" +
+	"\aroom_id\x18\x01 \x01(\tH\x01R\x06roomId\x88\x01\x01\x12Q\n" +
+	"\x14send_message_request\x18\x02 \x01(\v2\x1d.chatproto.SendMessageRequestH\x00R\x12sendMessageRequest\x12Z\n" +
+	"\x15list_messages_request\x18\x03 \x01(\v2$.chatproto.ListMessagesServerRequestH\x00R\x13listMessagesRequestB\t\n" +
+	"\arequestB\n" +
+	"\n" +
+	"\b_room_id\"\xc6\x01\n" +
+	"\x10MessagesResponse\x12\x17\n" +
+	"\aroom_id\x18\x01 \x01(\tR\x06roomId\x12.\n" +
+	"\amessage\x18\x02 \x01(\v2\x12.chatproto.MessageH\x00R\amessage\x12]\n" +
+	"\x16list_messages_response\x18\x03 \x01(\v2%.chatproto.ListMessagesServerResponseH\x00R\x14listMessagesResponseB\n" +
+	"\n" +
+	"\bresponse2\x9c\x01\n" +
 	"\x0eChatController\x12A\n" +
-	"\x04List\x12\x1b.chatproto.ListRoomsRequest\x1a\x1c.chatproto.ListRoomsResponse\x12A\n" +
-	"\bMessages\x12\x1d.chatproto.SendMessageRequest\x1a\x12.chatproto.Message(\x010\x01B\fZ\n" +
+	"\x04List\x12\x1b.chatproto.ListRoomsRequest\x1a\x1c.chatproto.ListRoomsResponse\x12G\n" +
+	"\bMessages\x12\x1a.chatproto.MessagesRequest\x1a\x1b.chatproto.MessagesResponse(\x010\x01B\fZ\n" +
 	"/chatprotob\x06proto3"
 
 var (
@@ -369,31 +563,40 @@ func file_proto_room_proto_rawDescGZIP() []byte {
 	return file_proto_room_proto_rawDescData
 }
 
-var file_proto_room_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_proto_room_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_proto_room_proto_goTypes = []any{
-	(*Room)(nil),                  // 0: chatproto.Room
-	(*ListRoomsRequest)(nil),      // 1: chatproto.ListRoomsRequest
-	(*ListRoomsResponse)(nil),     // 2: chatproto.ListRoomsResponse
-	(*SendMessageRequest)(nil),    // 3: chatproto.SendMessageRequest
-	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
-	(*Message)(nil),               // 5: chatproto.Message
+	(*Room)(nil),                       // 0: chatproto.Room
+	(*ListRoomsRequest)(nil),           // 1: chatproto.ListRoomsRequest
+	(*ListRoomsResponse)(nil),          // 2: chatproto.ListRoomsResponse
+	(*SendMessageRequest)(nil),         // 3: chatproto.SendMessageRequest
+	(*MessagesRequest)(nil),            // 4: chatproto.MessagesRequest
+	(*MessagesResponse)(nil),           // 5: chatproto.MessagesResponse
+	(*timestamppb.Timestamp)(nil),      // 6: google.protobuf.Timestamp
+	(*MessageContent)(nil),             // 7: chatproto.MessageContent
+	(*ListMessagesServerRequest)(nil),  // 8: chatproto.ListMessagesServerRequest
+	(*Message)(nil),                    // 9: chatproto.Message
+	(*ListMessagesServerResponse)(nil), // 10: chatproto.ListMessagesServerResponse
 }
 var file_proto_room_proto_depIdxs = []int32{
-	4, // 0: chatproto.Room.last_message_at:type_name -> google.protobuf.Timestamp
-	4, // 1: chatproto.Room.created_at:type_name -> google.protobuf.Timestamp
-	4, // 2: chatproto.Room.updated_at:type_name -> google.protobuf.Timestamp
-	4, // 3: chatproto.Room.deleted_at:type_name -> google.protobuf.Timestamp
-	0, // 4: chatproto.ListRoomsResponse.rooms:type_name -> chatproto.Room
-	5, // 5: chatproto.SendMessageRequest.message:type_name -> chatproto.Message
-	1, // 6: chatproto.ChatController.List:input_type -> chatproto.ListRoomsRequest
-	3, // 7: chatproto.ChatController.Messages:input_type -> chatproto.SendMessageRequest
-	2, // 8: chatproto.ChatController.List:output_type -> chatproto.ListRoomsResponse
-	5, // 9: chatproto.ChatController.Messages:output_type -> chatproto.Message
-	8, // [8:10] is the sub-list for method output_type
-	6, // [6:8] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	6,  // 0: chatproto.Room.last_message_at:type_name -> google.protobuf.Timestamp
+	6,  // 1: chatproto.Room.created_at:type_name -> google.protobuf.Timestamp
+	6,  // 2: chatproto.Room.updated_at:type_name -> google.protobuf.Timestamp
+	6,  // 3: chatproto.Room.deleted_at:type_name -> google.protobuf.Timestamp
+	0,  // 4: chatproto.ListRoomsResponse.rooms:type_name -> chatproto.Room
+	7,  // 5: chatproto.SendMessageRequest.content:type_name -> chatproto.MessageContent
+	3,  // 6: chatproto.MessagesRequest.send_message_request:type_name -> chatproto.SendMessageRequest
+	8,  // 7: chatproto.MessagesRequest.list_messages_request:type_name -> chatproto.ListMessagesServerRequest
+	9,  // 8: chatproto.MessagesResponse.message:type_name -> chatproto.Message
+	10, // 9: chatproto.MessagesResponse.list_messages_response:type_name -> chatproto.ListMessagesServerResponse
+	1,  // 10: chatproto.ChatController.List:input_type -> chatproto.ListRoomsRequest
+	4,  // 11: chatproto.ChatController.Messages:input_type -> chatproto.MessagesRequest
+	2,  // 12: chatproto.ChatController.List:output_type -> chatproto.ListRoomsResponse
+	5,  // 13: chatproto.ChatController.Messages:output_type -> chatproto.MessagesResponse
+	12, // [12:14] is the sub-list for method output_type
+	10, // [10:12] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_proto_room_proto_init() }
@@ -404,13 +607,21 @@ func file_proto_room_proto_init() {
 	file_proto_message_proto_init()
 	file_proto_room_proto_msgTypes[0].OneofWrappers = []any{}
 	file_proto_room_proto_msgTypes[3].OneofWrappers = []any{}
+	file_proto_room_proto_msgTypes[4].OneofWrappers = []any{
+		(*MessagesRequest_SendMessageRequest)(nil),
+		(*MessagesRequest_ListMessagesRequest)(nil),
+	}
+	file_proto_room_proto_msgTypes[5].OneofWrappers = []any{
+		(*MessagesResponse_Message)(nil),
+		(*MessagesResponse_ListMessagesResponse)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_room_proto_rawDesc), len(file_proto_room_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
