@@ -296,7 +296,13 @@ class Message extends $pb.GeneratedMessage {
 }
 
 class ListMessagesServerRequest extends $pb.GeneratedMessage {
-  factory ListMessagesServerRequest() => create();
+  factory ListMessagesServerRequest({
+    $core.String? roomId,
+  }) {
+    final result = create();
+    if (roomId != null) result.roomId = roomId;
+    return result;
+  }
 
   ListMessagesServerRequest._();
 
@@ -311,6 +317,7 @@ class ListMessagesServerRequest extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'ListMessagesServerRequest',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'chatproto'),
       createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'roomId')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -335,6 +342,15 @@ class ListMessagesServerRequest extends $pb.GeneratedMessage {
   static ListMessagesServerRequest getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<ListMessagesServerRequest>(create);
   static ListMessagesServerRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get roomId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set roomId($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasRoomId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearRoomId() => $_clearField(1);
 }
 
 class ListMessagesServerResponse extends $pb.GeneratedMessage {

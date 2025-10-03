@@ -332,7 +332,6 @@ type MessagesRequest struct {
 	// Types that are valid to be assigned to Request:
 	//
 	//	*MessagesRequest_SendMessageRequest
-	//	*MessagesRequest_ListMessagesRequest
 	Request       isMessagesRequest_Request `protobuf_oneof:"request"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -391,15 +390,6 @@ func (x *MessagesRequest) GetSendMessageRequest() *SendMessageRequest {
 	return nil
 }
 
-func (x *MessagesRequest) GetListMessagesRequest() *ListMessagesServerRequest {
-	if x != nil {
-		if x, ok := x.Request.(*MessagesRequest_ListMessagesRequest); ok {
-			return x.ListMessagesRequest
-		}
-	}
-	return nil
-}
-
 type isMessagesRequest_Request interface {
 	isMessagesRequest_Request()
 }
@@ -408,13 +398,7 @@ type MessagesRequest_SendMessageRequest struct {
 	SendMessageRequest *SendMessageRequest `protobuf:"bytes,2,opt,name=send_message_request,json=sendMessageRequest,proto3,oneof"`
 }
 
-type MessagesRequest_ListMessagesRequest struct {
-	ListMessagesRequest *ListMessagesServerRequest `protobuf:"bytes,3,opt,name=list_messages_request,json=listMessagesRequest,proto3,oneof"`
-}
-
 func (*MessagesRequest_SendMessageRequest) isMessagesRequest_Request() {}
-
-func (*MessagesRequest_ListMessagesRequest) isMessagesRequest_Request() {}
 
 type MessagesResponse struct {
 	state  protoimpl.MessageState `protogen:"open.v1"`
@@ -422,7 +406,6 @@ type MessagesResponse struct {
 	// Types that are valid to be assigned to Response:
 	//
 	//	*MessagesResponse_Message
-	//	*MessagesResponse_ListMessagesResponse
 	Response      isMessagesResponse_Response `protobuf_oneof:"response"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -481,15 +464,6 @@ func (x *MessagesResponse) GetMessage() *Message {
 	return nil
 }
 
-func (x *MessagesResponse) GetListMessagesResponse() *ListMessagesServerResponse {
-	if x != nil {
-		if x, ok := x.Response.(*MessagesResponse_ListMessagesResponse); ok {
-			return x.ListMessagesResponse
-		}
-	}
-	return nil
-}
-
 type isMessagesResponse_Response interface {
 	isMessagesResponse_Response()
 }
@@ -498,13 +472,7 @@ type MessagesResponse_Message struct {
 	Message *Message `protobuf:"bytes,2,opt,name=message,proto3,oneof"`
 }
 
-type MessagesResponse_ListMessagesResponse struct {
-	ListMessagesResponse *ListMessagesServerResponse `protobuf:"bytes,3,opt,name=list_messages_response,json=listMessagesResponse,proto3,oneof"`
-}
-
 func (*MessagesResponse_Message) isMessagesResponse_Response() {}
-
-func (*MessagesResponse_ListMessagesResponse) isMessagesResponse_Response() {}
 
 var File_proto_room_proto protoreflect.FileDescriptor
 
@@ -542,22 +510,21 @@ const file_proto_room_proto_rawDesc = "" +
 	"\x0fparticipant_ids\x18\a \x03(\tR\x0eparticipantIdsB\n" +
 	"\n" +
 	"\b_room_idB\x16\n" +
-	"\x14_reply_to_message_id\"\xf5\x01\n" +
+	"\x14_reply_to_message_id\"\x99\x01\n" +
 	"\x0fMessagesRequest\x12\x1c\n" +
 	"\aroom_id\x18\x01 \x01(\tH\x01R\x06roomId\x88\x01\x01\x12Q\n" +
-	"\x14send_message_request\x18\x02 \x01(\v2\x1d.chatproto.SendMessageRequestH\x00R\x12sendMessageRequest\x12Z\n" +
-	"\x15list_messages_request\x18\x03 \x01(\v2$.chatproto.ListMessagesServerRequestH\x00R\x13listMessagesRequestB\t\n" +
+	"\x14send_message_request\x18\x02 \x01(\v2\x1d.chatproto.SendMessageRequestH\x00R\x12sendMessageRequestB\t\n" +
 	"\arequestB\n" +
 	"\n" +
-	"\b_room_id\"\xc6\x01\n" +
+	"\b_room_id\"g\n" +
 	"\x10MessagesResponse\x12\x17\n" +
 	"\aroom_id\x18\x01 \x01(\tR\x06roomId\x12.\n" +
-	"\amessage\x18\x02 \x01(\v2\x12.chatproto.MessageH\x00R\amessage\x12]\n" +
-	"\x16list_messages_response\x18\x03 \x01(\v2%.chatproto.ListMessagesServerResponseH\x00R\x14listMessagesResponseB\n" +
+	"\amessage\x18\x02 \x01(\v2\x12.chatproto.MessageH\x00R\amessageB\n" +
 	"\n" +
-	"\bresponse2\x9c\x01\n" +
+	"\bresponse2\xf9\x01\n" +
 	"\x0eChatController\x12A\n" +
-	"\x04List\x12\x1b.chatproto.ListRoomsRequest\x1a\x1c.chatproto.ListRoomsResponse\x12G\n" +
+	"\x04List\x12\x1b.chatproto.ListRoomsRequest\x1a\x1c.chatproto.ListRoomsResponse\x12[\n" +
+	"\fListMessages\x12$.chatproto.ListMessagesServerRequest\x1a%.chatproto.ListMessagesServerResponse\x12G\n" +
 	"\bMessages\x12\x1a.chatproto.MessagesRequest\x1a\x1b.chatproto.MessagesResponse(\x010\x01B\fZ\n" +
 	"/chatprotob\x06proto3"
 
@@ -583,8 +550,8 @@ var file_proto_room_proto_goTypes = []any{
 	(*MessagesResponse)(nil),           // 5: chatproto.MessagesResponse
 	(*timestamppb.Timestamp)(nil),      // 6: google.protobuf.Timestamp
 	(*MessageContent)(nil),             // 7: chatproto.MessageContent
-	(*ListMessagesServerRequest)(nil),  // 8: chatproto.ListMessagesServerRequest
-	(*Message)(nil),                    // 9: chatproto.Message
+	(*Message)(nil),                    // 8: chatproto.Message
+	(*ListMessagesServerRequest)(nil),  // 9: chatproto.ListMessagesServerRequest
 	(*ListMessagesServerResponse)(nil), // 10: chatproto.ListMessagesServerResponse
 }
 var file_proto_room_proto_depIdxs = []int32{
@@ -595,18 +562,18 @@ var file_proto_room_proto_depIdxs = []int32{
 	0,  // 4: chatproto.ListRoomsResponse.rooms:type_name -> chatproto.Room
 	7,  // 5: chatproto.SendMessageRequest.content:type_name -> chatproto.MessageContent
 	3,  // 6: chatproto.MessagesRequest.send_message_request:type_name -> chatproto.SendMessageRequest
-	8,  // 7: chatproto.MessagesRequest.list_messages_request:type_name -> chatproto.ListMessagesServerRequest
-	9,  // 8: chatproto.MessagesResponse.message:type_name -> chatproto.Message
-	10, // 9: chatproto.MessagesResponse.list_messages_response:type_name -> chatproto.ListMessagesServerResponse
-	1,  // 10: chatproto.ChatController.List:input_type -> chatproto.ListRoomsRequest
-	4,  // 11: chatproto.ChatController.Messages:input_type -> chatproto.MessagesRequest
-	2,  // 12: chatproto.ChatController.List:output_type -> chatproto.ListRoomsResponse
+	8,  // 7: chatproto.MessagesResponse.message:type_name -> chatproto.Message
+	1,  // 8: chatproto.ChatController.List:input_type -> chatproto.ListRoomsRequest
+	9,  // 9: chatproto.ChatController.ListMessages:input_type -> chatproto.ListMessagesServerRequest
+	4,  // 10: chatproto.ChatController.Messages:input_type -> chatproto.MessagesRequest
+	2,  // 11: chatproto.ChatController.List:output_type -> chatproto.ListRoomsResponse
+	10, // 12: chatproto.ChatController.ListMessages:output_type -> chatproto.ListMessagesServerResponse
 	5,  // 13: chatproto.ChatController.Messages:output_type -> chatproto.MessagesResponse
-	12, // [12:14] is the sub-list for method output_type
-	10, // [10:12] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	11, // [11:14] is the sub-list for method output_type
+	8,  // [8:11] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_proto_room_proto_init() }
@@ -619,11 +586,9 @@ func file_proto_room_proto_init() {
 	file_proto_room_proto_msgTypes[3].OneofWrappers = []any{}
 	file_proto_room_proto_msgTypes[4].OneofWrappers = []any{
 		(*MessagesRequest_SendMessageRequest)(nil),
-		(*MessagesRequest_ListMessagesRequest)(nil),
 	}
 	file_proto_room_proto_msgTypes[5].OneofWrappers = []any{
 		(*MessagesResponse_Message)(nil),
-		(*MessagesResponse_ListMessagesResponse)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

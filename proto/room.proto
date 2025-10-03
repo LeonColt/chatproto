@@ -42,7 +42,6 @@ message MessagesRequest {
   optional string room_id = 1;
   oneof request {
     SendMessageRequest send_message_request = 2;
-    ListMessagesServerRequest list_messages_request = 3;
   }
 }
 
@@ -50,11 +49,11 @@ message MessagesResponse {
   string room_id = 1;
   oneof response {
     Message message = 2;
-    ListMessagesServerResponse list_messages_response = 3;
   }
 }
 
 service ChatController {
   rpc List(ListRoomsRequest) returns (ListRoomsResponse);
+  rpc ListMessages(ListMessagesServerRequest) returns (ListMessagesServerResponse);
   rpc Messages(stream MessagesRequest) returns (stream MessagesResponse);
 }

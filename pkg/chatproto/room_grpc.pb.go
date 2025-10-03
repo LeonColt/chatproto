@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ChatController_List_FullMethodName     = "/chatproto.ChatController/List"
-	ChatController_Messages_FullMethodName = "/chatproto.ChatController/Messages"
+	ChatController_List_FullMethodName         = "/chatproto.ChatController/List"
+	ChatController_ListMessages_FullMethodName = "/chatproto.ChatController/ListMessages"
+	ChatController_Messages_FullMethodName     = "/chatproto.ChatController/Messages"
 )
 
 // ChatControllerClient is the client API for ChatController service.
@@ -28,6 +29,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ChatControllerClient interface {
 	List(ctx context.Context, in *ListRoomsRequest, opts ...grpc.CallOption) (*ListRoomsResponse, error)
+	ListMessages(ctx context.Context, in *ListMessagesServerRequest, opts ...grpc.CallOption) (*ListMessagesServerResponse, error)
 	Messages(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[MessagesRequest, MessagesResponse], error)
 }
 
@@ -43,6 +45,16 @@ func (c *chatControllerClient) List(ctx context.Context, in *ListRoomsRequest, o
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListRoomsResponse)
 	err := c.cc.Invoke(ctx, ChatController_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *chatControllerClient) ListMessages(ctx context.Context, in *ListMessagesServerRequest, opts ...grpc.CallOption) (*ListMessagesServerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListMessagesServerResponse)
+	err := c.cc.Invoke(ctx, ChatController_ListMessages_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -67,6 +79,7 @@ type ChatController_MessagesClient = grpc.BidiStreamingClient[MessagesRequest, M
 // for forward compatibility.
 type ChatControllerServer interface {
 	List(context.Context, *ListRoomsRequest) (*ListRoomsResponse, error)
+	ListMessages(context.Context, *ListMessagesServerRequest) (*ListMessagesServerResponse, error)
 	Messages(grpc.BidiStreamingServer[MessagesRequest, MessagesResponse]) error
 	mustEmbedUnimplementedChatControllerServer()
 }
@@ -80,6 +93,9 @@ type UnimplementedChatControllerServer struct{}
 
 func (UnimplementedChatControllerServer) List(context.Context, *ListRoomsRequest) (*ListRoomsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedChatControllerServer) ListMessages(context.Context, *ListMessagesServerRequest) (*ListMessagesServerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMessages not implemented")
 }
 func (UnimplementedChatControllerServer) Messages(grpc.BidiStreamingServer[MessagesRequest, MessagesResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method Messages not implemented")
@@ -123,6 +139,24 @@ func _ChatController_List_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ChatController_ListMessages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMessagesServerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChatControllerServer).ListMessages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ChatController_ListMessages_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChatControllerServer).ListMessages(ctx, req.(*ListMessagesServerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ChatController_Messages_Handler(srv interface{}, stream grpc.ServerStream) error {
 	return srv.(ChatControllerServer).Messages(&grpc.GenericServerStream[MessagesRequest, MessagesResponse]{ServerStream: stream})
 }
@@ -140,6 +174,10 @@ var ChatController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "List",
 			Handler:    _ChatController_List_Handler,
+		},
+		{
+			MethodName: "ListMessages",
+			Handler:    _ChatController_ListMessages_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

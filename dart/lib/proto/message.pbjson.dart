@@ -121,11 +121,15 @@ final $typed_data.Uint8List messageDescriptor = $convert.base64Decode(
 @$core.Deprecated('Use listMessagesServerRequestDescriptor instead')
 const ListMessagesServerRequest$json = {
   '1': 'ListMessagesServerRequest',
+  '2': [
+    {'1': 'room_id', '3': 1, '4': 1, '5': 9, '10': 'roomId'},
+  ],
 };
 
 /// Descriptor for `ListMessagesServerRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List listMessagesServerRequestDescriptor =
-    $convert.base64Decode('ChlMaXN0TWVzc2FnZXNTZXJ2ZXJSZXF1ZXN0');
+    $convert.base64Decode(
+        'ChlMaXN0TWVzc2FnZXNTZXJ2ZXJSZXF1ZXN0EhcKB3Jvb21faWQYASABKAlSBnJvb21JZA==');
 
 @$core.Deprecated('Use listMessagesServerResponseDescriptor instead')
 const ListMessagesServerResponse$json = {

@@ -234,6 +234,7 @@ func (x *Message) GetDeletedAt() *timestamppb.Timestamp {
 
 type ListMessagesServerRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	RoomId        string                 `protobuf:"bytes,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -266,6 +267,13 @@ func (x *ListMessagesServerRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ListMessagesServerRequest.ProtoReflect.Descriptor instead.
 func (*ListMessagesServerRequest) Descriptor() ([]byte, []int) {
 	return file_proto_message_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ListMessagesServerRequest) GetRoomId() string {
+	if x != nil {
+		return x.RoomId
+	}
+	return ""
 }
 
 type ListMessagesServerResponse struct {
@@ -335,8 +343,9 @@ const file_proto_message_proto_rawDesc = "" +
 	"\n" +
 	"deleted_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampH\x01R\tdeletedAt\x88\x01\x01B\x16\n" +
 	"\x14_reply_to_message_idB\r\n" +
-	"\v_deleted_at\"\x1b\n" +
-	"\x19ListMessagesServerRequest\"L\n" +
+	"\v_deleted_at\"4\n" +
+	"\x19ListMessagesServerRequest\x12\x17\n" +
+	"\aroom_id\x18\x01 \x01(\tR\x06roomId\"L\n" +
 	"\x1aListMessagesServerResponse\x12.\n" +
 	"\bmessages\x18\x01 \x03(\v2\x12.chatproto.MessageR\bmessagesB\fZ\n" +
 	"/chatprotob\x06proto3"

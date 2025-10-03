@@ -14,8 +14,8 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../google/protobuf/timestamp.pb.dart' as $1;
-import 'message.pb.dart' as $2;
+import '../google/protobuf/timestamp.pb.dart' as $2;
+import 'message.pb.dart' as $1;
 
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
@@ -26,10 +26,10 @@ class Room extends $pb.GeneratedMessage {
     $core.String? name,
     $core.String? description,
     $core.int? index,
-    $1.Timestamp? lastMessageAt,
-    $1.Timestamp? createdAt,
-    $1.Timestamp? updatedAt,
-    $1.Timestamp? deletedAt,
+    $2.Timestamp? lastMessageAt,
+    $2.Timestamp? createdAt,
+    $2.Timestamp? updatedAt,
+    $2.Timestamp? deletedAt,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -62,14 +62,14 @@ class Room extends $pb.GeneratedMessage {
     ..aOS(3, _omitFieldNames ? '' : 'name')
     ..aOS(4, _omitFieldNames ? '' : 'description')
     ..a<$core.int>(5, _omitFieldNames ? '' : 'index', $pb.PbFieldType.O3)
-    ..aOM<$1.Timestamp>(6, _omitFieldNames ? '' : 'lastMessageAt',
-        subBuilder: $1.Timestamp.create)
-    ..aOM<$1.Timestamp>(7, _omitFieldNames ? '' : 'createdAt',
-        subBuilder: $1.Timestamp.create)
-    ..aOM<$1.Timestamp>(8, _omitFieldNames ? '' : 'updatedAt',
-        subBuilder: $1.Timestamp.create)
-    ..aOM<$1.Timestamp>(9, _omitFieldNames ? '' : 'deletedAt',
-        subBuilder: $1.Timestamp.create)
+    ..aOM<$2.Timestamp>(6, _omitFieldNames ? '' : 'lastMessageAt',
+        subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(7, _omitFieldNames ? '' : 'createdAt',
+        subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(8, _omitFieldNames ? '' : 'updatedAt',
+        subBuilder: $2.Timestamp.create)
+    ..aOM<$2.Timestamp>(9, _omitFieldNames ? '' : 'deletedAt',
+        subBuilder: $2.Timestamp.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -131,48 +131,48 @@ class Room extends $pb.GeneratedMessage {
   void clearIndex() => $_clearField(5);
 
   @$pb.TagNumber(6)
-  $1.Timestamp get lastMessageAt => $_getN(5);
+  $2.Timestamp get lastMessageAt => $_getN(5);
   @$pb.TagNumber(6)
-  set lastMessageAt($1.Timestamp value) => $_setField(6, value);
+  set lastMessageAt($2.Timestamp value) => $_setField(6, value);
   @$pb.TagNumber(6)
   $core.bool hasLastMessageAt() => $_has(5);
   @$pb.TagNumber(6)
   void clearLastMessageAt() => $_clearField(6);
   @$pb.TagNumber(6)
-  $1.Timestamp ensureLastMessageAt() => $_ensure(5);
+  $2.Timestamp ensureLastMessageAt() => $_ensure(5);
 
   @$pb.TagNumber(7)
-  $1.Timestamp get createdAt => $_getN(6);
+  $2.Timestamp get createdAt => $_getN(6);
   @$pb.TagNumber(7)
-  set createdAt($1.Timestamp value) => $_setField(7, value);
+  set createdAt($2.Timestamp value) => $_setField(7, value);
   @$pb.TagNumber(7)
   $core.bool hasCreatedAt() => $_has(6);
   @$pb.TagNumber(7)
   void clearCreatedAt() => $_clearField(7);
   @$pb.TagNumber(7)
-  $1.Timestamp ensureCreatedAt() => $_ensure(6);
+  $2.Timestamp ensureCreatedAt() => $_ensure(6);
 
   @$pb.TagNumber(8)
-  $1.Timestamp get updatedAt => $_getN(7);
+  $2.Timestamp get updatedAt => $_getN(7);
   @$pb.TagNumber(8)
-  set updatedAt($1.Timestamp value) => $_setField(8, value);
+  set updatedAt($2.Timestamp value) => $_setField(8, value);
   @$pb.TagNumber(8)
   $core.bool hasUpdatedAt() => $_has(7);
   @$pb.TagNumber(8)
   void clearUpdatedAt() => $_clearField(8);
   @$pb.TagNumber(8)
-  $1.Timestamp ensureUpdatedAt() => $_ensure(7);
+  $2.Timestamp ensureUpdatedAt() => $_ensure(7);
 
   @$pb.TagNumber(9)
-  $1.Timestamp get deletedAt => $_getN(8);
+  $2.Timestamp get deletedAt => $_getN(8);
   @$pb.TagNumber(9)
-  set deletedAt($1.Timestamp value) => $_setField(9, value);
+  set deletedAt($2.Timestamp value) => $_setField(9, value);
   @$pb.TagNumber(9)
   $core.bool hasDeletedAt() => $_has(8);
   @$pb.TagNumber(9)
   void clearDeletedAt() => $_clearField(9);
   @$pb.TagNumber(9)
-  $1.Timestamp ensureDeletedAt() => $_ensure(8);
+  $2.Timestamp ensureDeletedAt() => $_ensure(8);
 }
 
 class ListRoomsRequest extends $pb.GeneratedMessage {
@@ -310,7 +310,7 @@ class SendMessageRequest extends $pb.GeneratedMessage {
   factory SendMessageRequest({
     $core.String? roomId,
     $core.String? messageId,
-    $2.MessageContent? content,
+    $1.MessageContent? content,
     $core.String? replyToMessageId,
     $core.String? name,
     $core.String? description,
@@ -342,8 +342,8 @@ class SendMessageRequest extends $pb.GeneratedMessage {
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'roomId')
     ..aOS(2, _omitFieldNames ? '' : 'messageId')
-    ..aOM<$2.MessageContent>(3, _omitFieldNames ? '' : 'content',
-        subBuilder: $2.MessageContent.create)
+    ..aOM<$1.MessageContent>(3, _omitFieldNames ? '' : 'content',
+        subBuilder: $1.MessageContent.create)
     ..aOS(4, _omitFieldNames ? '' : 'replyToMessageId')
     ..aOS(5, _omitFieldNames ? '' : 'name')
     ..aOS(6, _omitFieldNames ? '' : 'description')
@@ -390,15 +390,15 @@ class SendMessageRequest extends $pb.GeneratedMessage {
   void clearMessageId() => $_clearField(2);
 
   @$pb.TagNumber(3)
-  $2.MessageContent get content => $_getN(2);
+  $1.MessageContent get content => $_getN(2);
   @$pb.TagNumber(3)
-  set content($2.MessageContent value) => $_setField(3, value);
+  set content($1.MessageContent value) => $_setField(3, value);
   @$pb.TagNumber(3)
   $core.bool hasContent() => $_has(2);
   @$pb.TagNumber(3)
   void clearContent() => $_clearField(3);
   @$pb.TagNumber(3)
-  $2.MessageContent ensureContent() => $_ensure(2);
+  $1.MessageContent ensureContent() => $_ensure(2);
 
   @$pb.TagNumber(4)
   $core.String get replyToMessageId => $_getSZ(3);
@@ -431,20 +431,17 @@ class SendMessageRequest extends $pb.GeneratedMessage {
   $pb.PbList<$core.String> get participantIds => $_getList(6);
 }
 
-enum MessagesRequest_Request { sendMessageRequest, listMessagesRequest, notSet }
+enum MessagesRequest_Request { sendMessageRequest, notSet }
 
 class MessagesRequest extends $pb.GeneratedMessage {
   factory MessagesRequest({
     $core.String? roomId,
     SendMessageRequest? sendMessageRequest,
-    $2.ListMessagesServerRequest? listMessagesRequest,
   }) {
     final result = create();
     if (roomId != null) result.roomId = roomId;
     if (sendMessageRequest != null)
       result.sendMessageRequest = sendMessageRequest;
-    if (listMessagesRequest != null)
-      result.listMessagesRequest = listMessagesRequest;
     return result;
   }
 
@@ -460,20 +457,16 @@ class MessagesRequest extends $pb.GeneratedMessage {
   static const $core.Map<$core.int, MessagesRequest_Request>
       _MessagesRequest_RequestByTag = {
     2: MessagesRequest_Request.sendMessageRequest,
-    3: MessagesRequest_Request.listMessagesRequest,
     0: MessagesRequest_Request.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'MessagesRequest',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'chatproto'),
       createEmptyInstance: create)
-    ..oo(0, [2, 3])
+    ..oo(0, [2])
     ..aOS(1, _omitFieldNames ? '' : 'roomId')
     ..aOM<SendMessageRequest>(2, _omitFieldNames ? '' : 'sendMessageRequest',
         subBuilder: SendMessageRequest.create)
-    ..aOM<$2.ListMessagesServerRequest>(
-        3, _omitFieldNames ? '' : 'listMessagesRequest',
-        subBuilder: $2.ListMessagesServerRequest.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -520,33 +513,18 @@ class MessagesRequest extends $pb.GeneratedMessage {
   void clearSendMessageRequest() => $_clearField(2);
   @$pb.TagNumber(2)
   SendMessageRequest ensureSendMessageRequest() => $_ensure(1);
-
-  @$pb.TagNumber(3)
-  $2.ListMessagesServerRequest get listMessagesRequest => $_getN(2);
-  @$pb.TagNumber(3)
-  set listMessagesRequest($2.ListMessagesServerRequest value) =>
-      $_setField(3, value);
-  @$pb.TagNumber(3)
-  $core.bool hasListMessagesRequest() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearListMessagesRequest() => $_clearField(3);
-  @$pb.TagNumber(3)
-  $2.ListMessagesServerRequest ensureListMessagesRequest() => $_ensure(2);
 }
 
-enum MessagesResponse_Response { message, listMessagesResponse, notSet }
+enum MessagesResponse_Response { message, notSet }
 
 class MessagesResponse extends $pb.GeneratedMessage {
   factory MessagesResponse({
     $core.String? roomId,
-    $2.Message? message,
-    $2.ListMessagesServerResponse? listMessagesResponse,
+    $1.Message? message,
   }) {
     final result = create();
     if (roomId != null) result.roomId = roomId;
     if (message != null) result.message = message;
-    if (listMessagesResponse != null)
-      result.listMessagesResponse = listMessagesResponse;
     return result;
   }
 
@@ -562,20 +540,16 @@ class MessagesResponse extends $pb.GeneratedMessage {
   static const $core.Map<$core.int, MessagesResponse_Response>
       _MessagesResponse_ResponseByTag = {
     2: MessagesResponse_Response.message,
-    3: MessagesResponse_Response.listMessagesResponse,
     0: MessagesResponse_Response.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'MessagesResponse',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'chatproto'),
       createEmptyInstance: create)
-    ..oo(0, [2, 3])
+    ..oo(0, [2])
     ..aOS(1, _omitFieldNames ? '' : 'roomId')
-    ..aOM<$2.Message>(2, _omitFieldNames ? '' : 'message',
-        subBuilder: $2.Message.create)
-    ..aOM<$2.ListMessagesServerResponse>(
-        3, _omitFieldNames ? '' : 'listMessagesResponse',
-        subBuilder: $2.ListMessagesServerResponse.create)
+    ..aOM<$1.Message>(2, _omitFieldNames ? '' : 'message',
+        subBuilder: $1.Message.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -613,27 +587,15 @@ class MessagesResponse extends $pb.GeneratedMessage {
   void clearRoomId() => $_clearField(1);
 
   @$pb.TagNumber(2)
-  $2.Message get message => $_getN(1);
+  $1.Message get message => $_getN(1);
   @$pb.TagNumber(2)
-  set message($2.Message value) => $_setField(2, value);
+  set message($1.Message value) => $_setField(2, value);
   @$pb.TagNumber(2)
   $core.bool hasMessage() => $_has(1);
   @$pb.TagNumber(2)
   void clearMessage() => $_clearField(2);
   @$pb.TagNumber(2)
-  $2.Message ensureMessage() => $_ensure(1);
-
-  @$pb.TagNumber(3)
-  $2.ListMessagesServerResponse get listMessagesResponse => $_getN(2);
-  @$pb.TagNumber(3)
-  set listMessagesResponse($2.ListMessagesServerResponse value) =>
-      $_setField(3, value);
-  @$pb.TagNumber(3)
-  $core.bool hasListMessagesResponse() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearListMessagesResponse() => $_clearField(3);
-  @$pb.TagNumber(3)
-  $2.ListMessagesServerResponse ensureListMessagesResponse() => $_ensure(2);
+  $1.Message ensureMessage() => $_ensure(1);
 }
 
 const $core.bool _omitFieldNames =

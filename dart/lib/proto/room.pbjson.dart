@@ -181,15 +181,6 @@ const MessagesRequest$json = {
       '9': 0,
       '10': 'sendMessageRequest'
     },
-    {
-      '1': 'list_messages_request',
-      '3': 3,
-      '4': 1,
-      '5': 11,
-      '6': '.chatproto.ListMessagesServerRequest',
-      '9': 0,
-      '10': 'listMessagesRequest'
-    },
   ],
   '8': [
     {'1': 'request'},
@@ -201,9 +192,7 @@ const MessagesRequest$json = {
 final $typed_data.Uint8List messagesRequestDescriptor = $convert.base64Decode(
     'Cg9NZXNzYWdlc1JlcXVlc3QSHAoHcm9vbV9pZBgBIAEoCUgBUgZyb29tSWSIAQESUQoUc2VuZF'
     '9tZXNzYWdlX3JlcXVlc3QYAiABKAsyHS5jaGF0cHJvdG8uU2VuZE1lc3NhZ2VSZXF1ZXN0SABS'
-    'EnNlbmRNZXNzYWdlUmVxdWVzdBJaChVsaXN0X21lc3NhZ2VzX3JlcXVlc3QYAyABKAsyJC5jaG'
-    'F0cHJvdG8uTGlzdE1lc3NhZ2VzU2VydmVyUmVxdWVzdEgAUhNsaXN0TWVzc2FnZXNSZXF1ZXN0'
-    'QgkKB3JlcXVlc3RCCgoIX3Jvb21faWQ=');
+    'EnNlbmRNZXNzYWdlUmVxdWVzdEIJCgdyZXF1ZXN0QgoKCF9yb29tX2lk');
 
 @$core.Deprecated('Use messagesResponseDescriptor instead')
 const MessagesResponse$json = {
@@ -219,15 +208,6 @@ const MessagesResponse$json = {
       '9': 0,
       '10': 'message'
     },
-    {
-      '1': 'list_messages_response',
-      '3': 3,
-      '4': 1,
-      '5': 11,
-      '6': '.chatproto.ListMessagesServerResponse',
-      '9': 0,
-      '10': 'listMessagesResponse'
-    },
   ],
   '8': [
     {'1': 'response'},
@@ -237,6 +217,4 @@ const MessagesResponse$json = {
 /// Descriptor for `MessagesResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List messagesResponseDescriptor = $convert.base64Decode(
     'ChBNZXNzYWdlc1Jlc3BvbnNlEhcKB3Jvb21faWQYASABKAlSBnJvb21JZBIuCgdtZXNzYWdlGA'
-    'IgASgLMhIuY2hhdHByb3RvLk1lc3NhZ2VIAFIHbWVzc2FnZRJdChZsaXN0X21lc3NhZ2VzX3Jl'
-    'c3BvbnNlGAMgASgLMiUuY2hhdHByb3RvLkxpc3RNZXNzYWdlc1NlcnZlclJlc3BvbnNlSABSFG'
-    'xpc3RNZXNzYWdlc1Jlc3BvbnNlQgoKCHJlc3BvbnNl');
+    'IgASgLMhIuY2hhdHByb3RvLk1lc3NhZ2VIAFIHbWVzc2FnZUIKCghyZXNwb25zZQ==');
