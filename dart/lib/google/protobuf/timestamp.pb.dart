@@ -9,7 +9,7 @@
 // ignore_for_file: curly_braces_in_flow_control_structures
 // ignore_for_file: deprecated_member_use_from_same_package
 // ignore_for_file: implementation_imports, library_prefixes
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, prefer_relative_imports
 
 import 'dart:core' as $core;
 
@@ -69,7 +69,6 @@ export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 ///     Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
 ///         .setNanos((int) ((millis % 1000) * 1000000)).build();
 ///
-///
 /// Example 5: Compute Timestamp from Java `Instant.now()`.
 ///
 ///     Instant now = Instant.now();
@@ -77,7 +76,6 @@ export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 ///     Timestamp timestamp =
 ///         Timestamp.newBuilder().setSeconds(now.getEpochSecond())
 ///             .setNanos(now.getNano()).build();
-///
 ///
 /// Example 6: Compute Timestamp from current time in Python.
 ///
@@ -93,8 +91,8 @@ export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 /// {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
 /// seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
 /// are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
-/// is required. A proto3 JSON serializer should always use UTC (as indicated by
-/// "Z") when printing the Timestamp type and a proto3 JSON parser should be
+/// is required. A ProtoJSON serializer should always use UTC (as indicated by
+/// "Z") when printing the Timestamp type and a ProtoJSON parser should be
 /// able to accept both UTC and other timezones (as indicated by an offset).
 ///
 /// For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
@@ -108,7 +106,7 @@ export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 /// [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
 /// the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
 /// the Joda Time's [`ISODateTimeFormat.dateTime()`](
-/// http://www.joda.org/joda-time/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime%2D%2D
+/// http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
 /// ) to obtain a formatter capable of generating timestamps in this format.
 class Timestamp extends $pb.GeneratedMessage with $mixin.TimestampMixin {
   factory Timestamp({
@@ -135,14 +133,13 @@ class Timestamp extends $pb.GeneratedMessage with $mixin.TimestampMixin {
       package:
           const $pb.PackageName(_omitMessageNames ? '' : 'google.protobuf'),
       createEmptyInstance: create,
-      toProto3Json: $mixin.TimestampMixin.toProto3JsonHelper,
-      fromProto3Json: $mixin.TimestampMixin.fromProto3JsonHelper)
+      wellKnownType: $mixin.WellKnownType.timestamp)
     ..aInt64(1, _omitFieldNames ? '' : 'seconds')
-    ..a<$core.int>(2, _omitFieldNames ? '' : 'nanos', $pb.PbFieldType.O3)
+    ..aI(2, _omitFieldNames ? '' : 'nanos')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  Timestamp clone() => Timestamp()..mergeFromMessage(this);
+  Timestamp clone() => deepCopy();
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Timestamp copyWith(void Function(Timestamp) updates) =>
       super.copyWith((message) => updates(message as Timestamp)) as Timestamp;
@@ -154,15 +151,14 @@ class Timestamp extends $pb.GeneratedMessage with $mixin.TimestampMixin {
   static Timestamp create() => Timestamp._();
   @$core.override
   Timestamp createEmptyInstance() => create();
-  static $pb.PbList<Timestamp> createRepeated() => $pb.PbList<Timestamp>();
   @$core.pragma('dart2js:noInline')
   static Timestamp getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Timestamp>(create);
   static Timestamp? _defaultInstance;
 
-  /// Represents seconds of UTC time since Unix epoch
-  /// 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
-  /// 9999-12-31T23:59:59Z inclusive.
+  /// Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must
+  /// be between -62135596800 and 253402300799 inclusive (which corresponds to
+  /// 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z).
   @$pb.TagNumber(1)
   $fixnum.Int64 get seconds => $_getI64(0);
   @$pb.TagNumber(1)
@@ -172,9 +168,10 @@ class Timestamp extends $pb.GeneratedMessage with $mixin.TimestampMixin {
   @$pb.TagNumber(1)
   void clearSeconds() => $_clearField(1);
 
-  /// Non-negative fractions of a second at nanosecond resolution. Negative
-  /// second values with fractions must still have non-negative nanos values
-  /// that count forward in time. Must be from 0 to 999,999,999
+  /// Non-negative fractions of a second at nanosecond resolution. This field is
+  /// the nanosecond portion of the duration, not an alternative to seconds.
+  /// Negative second values with fractions must still have non-negative nanos
+  /// values that count forward in time. Must be between 0 and 999,999,999
   /// inclusive.
   @$pb.TagNumber(2)
   $core.int get nanos => $_getIZ(1);
